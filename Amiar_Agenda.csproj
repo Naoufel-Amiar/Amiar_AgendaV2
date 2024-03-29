@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Ressource\Icon\ADD.png" />
+    <None Remove="Ressource\Icon\ADD_SUPPR.png" />
+    <None Remove="Ressource\Icon\CALENDAR.png" />
+    <None Remove="Ressource\Icon\CONTACT.png" />
+    <None Remove="Ressource\Icon\EDIT.png" />
+    <None Remove="Ressource\Icon\RESEAU.png" />
+    <None Remove="Ressource\Icon\settings.png" />
+    <None Remove="Ressource\Icon\TO_DO_LIST.png" />
+    <None Remove="Ressource\Liste\ListeStatus.txt" />
+    <None Remove="Ressource\Liste\ListSex.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Ressource\Liste\ListSex.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Ressource\Liste\ListeStatus.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Ressource\Icon\ADD.png" />
+    <Resource Include="Ressource\Icon\ADD_SUPPR.png" />
+    <Resource Include="Ressource\Icon\CALENDAR.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Ressource\Icon\CONTACT.png" />
+    <Resource Include="Ressource\Icon\EDIT.png" />
+    <Resource Include="Ressource\Icon\RESEAU.png" />
+    <Resource Include="Ressource\Icon\settings.png" />
+    <Resource Include="Ressource\Icon\TO_DO_LIST.png" />
+  </ItemGroup>
+
+</Project>
