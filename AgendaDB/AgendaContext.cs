@@ -27,21 +27,26 @@ public partial class AgendaContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=172.31.254.161;port=3306;user=slab58;password=2005;database=agenda", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.21-mysql"));
+        => optionsBuilder.UseMySql("server=172.31.254.161;port=3306;user=slab58;password=2005;database=agenda", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.11.6-mariadb"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
-            .UseCollation("utf8_general_ci")
-            .HasCharSet("utf8");
+            .UseCollation("utf8mb4_general_ci")
+            .HasCharSet("utf8mb4");
 
         modelBuilder.Entity<Contact>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("contact");
+            entity
+                .ToTable("contact")
+                .HasCharSet("utf8mb3")
+                .UseCollation("utf8mb3_general_ci");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
             entity.Property(e => e.Adress).HasMaxLength(45);
             entity.Property(e => e.Nom).HasMaxLength(45);
             entity.Property(e => e.Prenom).HasMaxLength(45);
@@ -54,9 +59,14 @@ public partial class AgendaContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("social_media");
+            entity
+                .ToTable("social_media")
+                .HasCharSet("utf8mb3")
+                .UseCollation("utf8mb3_general_ci");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
             entity.Property(e => e.Name).HasMaxLength(45);
             entity.Property(e => e.Sudo).HasMaxLength(45);
             entity.Property(e => e.Url)
@@ -68,15 +78,24 @@ public partial class AgendaContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("social profil");
+            entity
+                .ToTable("social profil")
+                .HasCharSet("utf8mb3")
+                .UseCollation("utf8mb3_general_ci");
 
             entity.HasIndex(e => e.SocialMediaId, "fk_Social Profil_Social Media1_idx");
 
             entity.HasIndex(e => e.ContactId, "fk_Social Profil_contact_idx");
 
-            entity.Property(e => e.Id).HasColumnName("ID");
-            entity.Property(e => e.ContactId).HasColumnName("contact_id");
-            entity.Property(e => e.SocialMediaId).HasColumnName("Social Media_id");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("ID");
+            entity.Property(e => e.ContactId)
+                .HasColumnType("int(11)")
+                .HasColumnName("contact_id");
+            entity.Property(e => e.SocialMediaId)
+                .HasColumnType("int(11)")
+                .HasColumnName("Social Media_id");
 
             entity.HasOne(d => d.Contact).WithMany(p => p.SocialProfils)
                 .HasForeignKey(d => d.ContactId)
@@ -93,17 +112,24 @@ public partial class AgendaContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("task");
+            entity
+                .ToTable("task")
+                .HasCharSet("utf8mb3")
+                .UseCollation("utf8mb3_general_ci");
 
             entity.HasIndex(e => e.ToDoListId, "fk_Task_TO_DO_LIST1_idx");
 
-            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("ID");
             entity.Property(e => e.Check).HasColumnType("enum('YES','NO')");
             entity.Property(e => e.Description).HasMaxLength(45);
             entity.Property(e => e.Name)
                 .HasMaxLength(45)
                 .HasColumnName("name");
-            entity.Property(e => e.ToDoListId).HasColumnName("TO_DO_LIST_ID");
+            entity.Property(e => e.ToDoListId)
+                .HasColumnType("int(11)")
+                .HasColumnName("TO_DO_LIST_ID");
 
             entity.HasOne(d => d.ToDoList).WithMany(p => p.Tasks)
                 .HasForeignKey(d => d.ToDoListId)
@@ -115,15 +141,16 @@ public partial class AgendaContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("to_do_list");
+            entity
+                .ToTable("to_do_list")
+                .HasCharSet("utf8mb3")
+                .UseCollation("utf8mb3_general_ci");
 
-            entity.Property(e => e.Id).HasColumnName("ID");
-            entity.Property(e => e.Date).HasMaxLength(45);
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("ID");
             entity.Property(e => e.Description).HasMaxLength(45);
-            entity.Property(e => e.EndDate)
-                .HasMaxLength(45)
-                .HasColumnName("End_Date");
-            entity.Property(e => e.Mask).HasColumnType("enum('YES','NO')");
+            entity.Property(e => e.EndDate).HasColumnName("End_Date");
             entity.Property(e => e.Titre).HasMaxLength(45);
         });
 

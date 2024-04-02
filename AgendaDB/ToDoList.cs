@@ -11,11 +11,9 @@ public partial class ToDoList
 
     public string Description { get; set; } = null!;
 
-    public string Date { get; set; } = null!;
+    public DateOnly Date { get; set; }
 
-    public string EndDate { get; set; } = null!;
-
-    public string Mask { get; set; } = null!;
+    public DateOnly EndDate { get; set; }
 
     public virtual ICollection<Task> Tasks { get; set; } = new List<Task>();
 }
