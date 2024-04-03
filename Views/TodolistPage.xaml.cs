@@ -55,9 +55,9 @@ namespace Amiar_Agenda.Views
             if (todolist != null)
             {
                 // Passer les informations à la vue EditContactPage
-                EditToDoListPage editContactPage = new EditToDoListPage(todolist);
+                EditToDoListPage edittodolistpage = new EditToDoListPage(todolist);
                 // Afficher la vue EditContactPage
-                GRD_ToDoListContainer.Children.Add(editContactPage);
+                GRD_ToDoListContainer.Children.Add(edittodolistpage);
             }
         }
 
@@ -82,9 +82,9 @@ namespace Amiar_Agenda.Views
 
         private void BTN_DetailTODOLIST_Click(object sender, RoutedEventArgs e)
         {
-            GRD_Container_All.Children.Clear(); 
+            GRD_ToDoListContainer.Children.Clear();
             DetailToDoListPage detailtodolistpage = new DetailToDoListPage();
-            GRD_Container_All.Children.Add(detailtodolistpage); 
+            GRD_ToDoListContainer.Children.Add(detailtodolistpage); 
         }
     }
 }

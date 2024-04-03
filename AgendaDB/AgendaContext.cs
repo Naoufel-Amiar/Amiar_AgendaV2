@@ -21,7 +21,7 @@ public partial class AgendaContext : DbContext
 
     public virtual DbSet<SocialProfil> SocialProfils { get; set; }
 
-    public virtual DbSet<Task> Tasks { get; set; }
+    public virtual DbSet<Tache> Taches { get; set; }
 
     public virtual DbSet<ToDoList> ToDoLists { get; set; }
 
@@ -108,12 +108,12 @@ public partial class AgendaContext : DbContext
                 .HasConstraintName("fk_Social Profil_Social Media1");
         });
 
-        modelBuilder.Entity<Task>(entity =>
+        modelBuilder.Entity<Tache>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
             entity
-                .ToTable("task")
+                .ToTable("Tache")
                 .HasCharSet("utf8mb3")
                 .UseCollation("utf8mb3_general_ci");
 
@@ -131,7 +131,7 @@ public partial class AgendaContext : DbContext
                 .HasColumnType("int(11)")
                 .HasColumnName("TO_DO_LIST_ID");
 
-            entity.HasOne(d => d.ToDoList).WithMany(p => p.Tasks)
+            entity.HasOne(d => d.ToDoList).WithMany(p => p.Taches)
                 .HasForeignKey(d => d.ToDoListId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_Task_TO_DO_LIST1");

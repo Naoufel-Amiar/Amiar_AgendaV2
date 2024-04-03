@@ -68,15 +68,17 @@ namespace Amiar_Agenda.Service.DAO
 
         }
 
-        //avoir tasks de la to do list
-        public List<ToDoList> GetToDoListTask()
-        {
-            using (Context = new AgendaContext())
-            {
-                var taksoftodolist = Context.ToDoLists.Include(cnt => cnt.Tasks).ToList();
-                return taksoftodolist;
-            }
-        }
+        ////avoir tasks de la to do list
+        //public List<ToDoList> GetTaskToDoList()
+        //{
+        //    using (Context = new AgendaContext())
+        //    {
+        //        var taskoftodolist = Context.ToDoLists.Include(cnt => cnt.Tasks).ToList();
+        //        return taskoftodolist;
+        //    }
+        //}
+
+        
 
     }
 

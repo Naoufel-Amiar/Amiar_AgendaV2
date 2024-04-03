@@ -90,7 +90,7 @@
             <Button Grid.Row="1" Style="{StaticResource StyleBTNAdd}" Name="BP_Add_TODOLIST_FromViewContact" Click="BP_Add_TODOLIST_FromViewContact_Click" Cursor="Hand">
                 <StackPanel Orientation="Vertical">
                     <Image Height="70" Width="70" Source="/Ressource\Icon\ADD.png"/>
-                    <Label Content="Add Contact" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <Label Content="Add To Do List" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Button>
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Amiar_Agenda.AgendaDB;
 
-public partial class Task
+public partial class Tache
 {
     public int Id { get; set; }
 
