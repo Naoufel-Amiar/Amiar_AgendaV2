@@ -25,7 +25,17 @@ namespace Amiar_Agenda.Views
             InitializeComponent();
         }
 
-        private void BTN_ModifTODOLIST_Click(object sender, RoutedEventArgs e)
+        private void BTN_ModifTODOLIST_Click(object sender, RoutedEventArgs e)  
+        {
+
+        }
+
+        private void BTN_SupprTODOLIST_Click(object sender, RoutedEventArgs e)  
+        {
+
+        }
+
+        private void BTN_DetailTODOLIST_Click(object sender, RoutedEventArgs e)
         {
 
         }

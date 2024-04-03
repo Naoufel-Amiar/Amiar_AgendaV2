@@ -82,9 +82,9 @@ namespace Amiar_Agenda.Views
 
         private void BTN_DetailTODOLIST_Click(object sender, RoutedEventArgs e)
         {
-            GRD_ToDoListContainer.Children.Clear();
+            GRD_Container_All.Children.Clear(); 
             DetailToDoListPage detailtodolistpage = new DetailToDoListPage();
-            GRD_ToDoListContainer.Children.Add(detailtodolistpage);
+            GRD_Container_All.Children.Add(detailtodolistpage); 
         }
     }
 }

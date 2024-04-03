@@ -29,6 +29,43 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <Style x:Key="StyleBTNAdd" TargetType="{x:Type Button}">
+                <Setter Property="Background" Value="#4CAF50"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="BorderThickness" Value="3"/>
+                <Setter Property="BorderBrush" Value="Orange"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="5">
+                                <Grid>
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#388E3C"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" Value="#2E7D32"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Background" Value="#BDBDBD"/>
+                                    <Setter Property="Foreground" Value="#9E9E9E"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </Grid.Resources>
 
                 <Grid.RowDefinitions>
@@ -43,6 +80,14 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1" Style="{StaticResource StyleBTNAdd}" Name="BP_Add_Contact_FromViewContact" Click="BP_Add_Contact_FromViewContact_Click" Cursor="Hand">
+                <StackPanel Orientation="Vertical">
+                    <Image Height="70" Width="70" Source="/Ressource\Icon\ADD.png"/>
+                    <Label Content="Add Task" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
         </Grid>
 
         <Grid Grid.Row="1" Name="GRD_Task_Container" >
