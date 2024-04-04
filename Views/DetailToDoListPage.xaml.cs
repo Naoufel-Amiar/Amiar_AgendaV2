@@ -25,39 +25,51 @@ namespace Amiar_Agenda.Views
         public DAO_task DAOtask;
         public DAO_ToDoList DAOToDoList;
 
-        //ToDoList presettodolist;
+        ToDoList presettodolist;
 
-        public DetailToDoListPage()
+
+        public DetailToDoListPage(ToDoList todolist)
         {
             DAOToDoList = new DAO_ToDoList();
             DAOtask = new DAO_task();
 
-            ToDoList todolist = new ToDoList();
-
             InitializeComponent();
-            var AllTaskOfToDoList = DAOtask.GetTaskByToDoList(todolist.Id);
 
+            DAOToDoList = new DAO_ToDoList();
+
+            if (todolist != null)
+            {
+                presettodolist = todolist;
+            }
+
+            var AllTaskOfToDoList = DAOtask.GetTaskByToDoList(presettodolist.Id);
             DG_Task.ItemsSource = AllTaskOfToDoList;
         }
 
-        private void BTN_ModifTODOLIST_Click(object sender, RoutedEventArgs e)  
+        private void BTN_SupprTASKTODOLIST_Click(object sender, RoutedEventArgs e)  
         {
-
+            // Récupérer le bouton qui a été cliqué
+            Button button = sender as Button;
+            if (button != null)
+            {
+                // Récupérer le contact associé à la ligne du bouton
+                Tache task = button.DataContext as Tache;
+                if (task != null)
+                {
+                    DAOtask.DeleteTask(task.Id);
+                    DG_Task.ItemsSource = DAOtask.GetTaskByToDoList(presettodolist.Id);
+                }
+            }
         }
 
-        private void BTN_SupprTODOLIST_Click(object sender, RoutedEventArgs e)  
-        {
-
-        }
-
-        private void BTN_DetailTODOLIST_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void BP_Add_Task_FromViewTask_Click(object sender, RoutedEventArgs e)
         {
-
+            GRD_Task_Container.Children.Clear();
+            AddTaskPage addtaskpage = new AddTaskPage();
+            GRD_Task_Container.Children.Add(addtaskpage);
         }
     }
+
+    
 }

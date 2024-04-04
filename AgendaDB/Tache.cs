@@ -11,8 +11,6 @@ public partial class Tache
 
     public string Description { get; set; } = null!;
 
-    public string Check { get; set; } = null!;
-
     public int ToDoListId { get; set; }
 
     public virtual ToDoList ToDoList { get; set; } = null!;

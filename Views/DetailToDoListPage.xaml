@@ -98,12 +98,8 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <!--Bouton Modifier-->
-                                    <Button Name="BTN_ModifTODOLIST" Content="Modifier"  Click="BTN_ModifTODOLIST_Click" Tag="{Binding}"/>
                                     <!--Bouton Supprimer-->
-                                    <Button Name="BTN_SupprTODOLIST"  Content="Supprimer" Click="BTN_SupprTODOLIST_Click" Tag="{Binding}"/>
-                                    <!--Boutton detail-->
-                                    <Button Name="BTN_DetailTODOLIST"  Content="detail" Click="BTN_DetailTODOLIST_Click" Tag="{Binding}"/>
+                                    <Button Name="BTN_SupprTASKTODOLIST"  Content="Supprimer" Click="BTN_SupprTASKTODOLIST_Click" Tag="{Binding}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

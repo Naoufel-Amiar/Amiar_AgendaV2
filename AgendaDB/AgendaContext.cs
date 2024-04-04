@@ -122,7 +122,6 @@ public partial class AgendaContext : DbContext
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
                 .HasColumnName("ID");
-            entity.Property(e => e.Check).HasColumnType("enum('YES','NO')");
             entity.Property(e => e.Description).HasMaxLength(45);
             entity.Property(e => e.Name)
                 .HasMaxLength(45)
