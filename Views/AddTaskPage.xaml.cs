@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Amiar_Agenda.AgendaDB;
+using Amiar_Agenda.Service.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,21 @@ namespace Amiar_Agenda.Views
     /// </summary>
     public partial class AddTaskPage : UserControl
     {
+        public DAO_task DAOTask;
         public AddTaskPage()
         {
             InitializeComponent();
+            DAOTask = new DAO_task();
+
+        }
+
+        private void BTN_ADD_TASK_Click(object sender, RoutedEventArgs e)
+        {
+            Tache tache = new Tache();
+            tache.Name = TB_Titre.Text;
+            tache.Description = TB_Desc.Text;
+
+            DAOTask.CreateTask(tache);
         }
     }
 }
