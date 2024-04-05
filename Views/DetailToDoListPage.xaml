@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="900" d:DesignWidth="800">
 
-    <Grid Background="NavajoWhite">
+    <Grid Background="#BBD1EA">
 
         <Grid.Resources>
             <Style x:Key="CustomDataGridStyle" TargetType="{x:Type DataGrid}">

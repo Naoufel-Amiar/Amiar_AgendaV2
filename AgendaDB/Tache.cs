@@ -9,9 +9,9 @@ public partial class Tache
 
     public string Name { get; set; } = null!;
 
-    public string Description { get; set; } = null!;
-
     public int ToDoListId { get; set; }
+
+    public string Etat { get; set; } = null!;
 
     public virtual ToDoList ToDoList { get; set; } = null!;
 }

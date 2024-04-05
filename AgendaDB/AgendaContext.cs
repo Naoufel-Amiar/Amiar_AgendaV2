@@ -39,10 +39,7 @@ public partial class AgendaContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity
-                .ToTable("contact")
-                .HasCharSet("utf8mb3")
-                .UseCollation("utf8mb3_general_ci");
+            entity.ToTable("contact");
 
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
@@ -59,10 +56,7 @@ public partial class AgendaContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity
-                .ToTable("social_media")
-                .HasCharSet("utf8mb3")
-                .UseCollation("utf8mb3_general_ci");
+            entity.ToTable("social_media");
 
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
@@ -78,10 +72,7 @@ public partial class AgendaContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity
-                .ToTable("social profil")
-                .HasCharSet("utf8mb3")
-                .UseCollation("utf8mb3_general_ci");
+            entity.ToTable("social profil");
 
             entity.HasIndex(e => e.SocialMediaId, "fk_Social Profil_Social Media1_idx");
 
@@ -112,17 +103,14 @@ public partial class AgendaContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity
-                .ToTable("Tache")
-                .HasCharSet("utf8mb3")
-                .UseCollation("utf8mb3_general_ci");
+            entity.ToTable("Tache");
 
             entity.HasIndex(e => e.ToDoListId, "fk_Task_TO_DO_LIST1_idx");
 
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
                 .HasColumnName("ID");
-            entity.Property(e => e.Description).HasMaxLength(45);
+            entity.Property(e => e.Etat).HasColumnType("enum('Faite','Pas Faite')");
             entity.Property(e => e.Name)
                 .HasMaxLength(45)
                 .HasColumnName("name");
@@ -140,10 +128,7 @@ public partial class AgendaContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity
-                .ToTable("to_do_list")
-                .HasCharSet("utf8mb3")
-                .UseCollation("utf8mb3_general_ci");
+            entity.ToTable("to_do_list");
 
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")

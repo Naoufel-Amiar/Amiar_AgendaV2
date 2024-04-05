@@ -1,5 +1,7 @@
 ﻿using Amiar_Agenda.AgendaDB;
 using Amiar_Agenda.Service.DAO;
+using System.IO;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,20 +25,51 @@ namespace Amiar_Agenda.Views
     public partial class AddTaskPage : UserControl
     {
         public DAO_task DAOTask;
+        public DAO_ToDoList DAOToDoList;
         public AddTaskPage()
         {
             InitializeComponent();
             DAOTask = new DAO_task();
+            DAOToDoList = new DAO_ToDoList();
+
+            RemplirCBState();
 
         }
+
+        private void RemplirCBState()
+        {
+            string CheminListeState = "Ressource/Liste/ListeState.txt";
+            string[] ListState = File.ReadAllLines(CheminListeState);
+
+            foreach (string State in ListState)
+            {
+                CB_State.Items.Add(State);
+            }
+        }
+
+        //private void RemplirCBNameList()
+        //{
+        //    string[] ListState = (DAOToDoList.GetAllToDoList()).ToString();  //CA MARCHE PAS
+
+        //    foreach (string State in ListState)
+        //    {
+        //        CB_State.Items.Add(State);
+        //    }
+        //}
+
 
         private void BTN_ADD_TASK_Click(object sender, RoutedEventArgs e)
         {
             Tache tache = new Tache();
-            tache.Name = TB_Titre.Text;
-            tache.Description = TB_Desc.Text;
 
-            DAOTask.CreateTask(tache);
+            tache.Name = TB_Titre.Text;
+            tache.Etat = CB_State.Text;
+            //tache.ToDoList = CB_ChoiceList.Text;
+
+             DAOTask.CreateTask(tache);
+
+           
         }
+
     }
 }

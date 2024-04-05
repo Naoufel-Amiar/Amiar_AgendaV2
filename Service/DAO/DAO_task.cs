@@ -41,15 +41,40 @@ namespace Amiar_Agenda.Service.DAO
             }
         }
 
-        // Méthode pour créer une tâche pour une to do list
-        public void CreateTask(Tache task)
+        //Méthode pour créer une tâche pour une to do list
+        public string CreateTask(Tache tache)
         {
             using (var db = new AgendaContext())
             {
-                db.Taches.Add(task);
+                db.Taches.Add(tache);
                 db.SaveChanges(); //ERREUR SUR LE CREATE
+                return "Tache ajouté";
+
             }
         }
+
+        //public string CreateTask(Tache task)
+        //{
+        //    using (var db = new AgendaContext())
+        //    {
+        //        // Vérifiez si la liste associée à la tâche existe dans la base de données
+        //        var existingList = db.ToDoLists.FirstOrDefault(l => l.Id == task.ToDoListId);
+
+        //        if (existingList != null)
+        //        {
+
+        //            task.ToDoList = existingList;
+
+        //            db.Taches.Add(task);
+        //            db.SaveChanges();
+        //        }
+
+        //    }
+        //    return "Tâche ajoutée avec succès";
+        //}
+
+
+
 
     }
 }

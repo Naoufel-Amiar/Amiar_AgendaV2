@@ -89,10 +89,14 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="1" Grid.Column="0" Content="Le titre :" Style="{StaticResource LabelStyle}"/>
-                <Label Grid.Row="3" Grid.Column="0" Content="La description :" Style="{StaticResource LabelStyle}"/>
+                <Label Grid.Row="2" Grid.Column="0" Content="L'etat de la Tache :" Style="{StaticResource LabelStyle}"/>
+                <Label Grid.Row="3" Grid.Column="0" Content="La liste selectionné" Style="{StaticResource LabelStyle}"/>
 
-                <TextBox Grid.Row="1" Grid.Column="1" Name="TB_Titre" Style="{StaticResource TextBoxStyle}"/>
-                <TextBox Grid.Row="3" Grid.Column="1" Name="TB_Desc"  Style="{StaticResource TextBoxStyle}"/>
+                <TextBox  Grid.Row="1" Grid.Column="1" Name="TB_Titre" Style="{StaticResource TextBoxStyle}"/>
+                
+                <ComboBox Grid.Row="2" Grid.Column="1" Name="CB_State" />
+                <ComboBox Grid.Row="3" Grid.Column="1" Name="CB_ChoiceList"/>
+
             </Grid>
 
         </Grid>
