@@ -53,6 +53,8 @@ namespace Amiar_Agenda.Service.DAO
             }
         }
 
+
+
         //public string CreateTask(Tache task)
         //{
         //    using (var db = new AgendaContext())
@@ -74,7 +76,30 @@ namespace Amiar_Agenda.Service.DAO
         //}
 
 
+        public string CreateTaskAndAssignToList(Tache tache, int toDoListId)
+        {
+            using (var db = new AgendaContext())
+            {
+                // Vérifier si la liste associée à la tâche existe dans la base de données
+                var existingList = db.ToDoLists.FirstOrDefault(l => l.Id == toDoListId);
 
+                if (existingList != null)
+                {
+                    // Associer la tâche à la liste existante
+                    tache.ToDoListId = toDoListId;
+
+                    // Ajouter la tâche à la base de données
+                    db.Taches.Add(tache);
+                    db.SaveChanges();
+
+                    return "Tâche ajoutée avec succès à la liste " + existingList.Titre;
+                }
+                else
+                {
+                    return "La liste associée n'existe pas.";
+                }
+            }
+        }
 
     }
 }
