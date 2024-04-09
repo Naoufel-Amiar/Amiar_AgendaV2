@@ -1,1 +1,1 @@
-﻿Scaffold-DbContext "server=172.31.254.161;port=3306;user=slab58;password=2005;database=agenda" Pomelo.EntityFrameWorkCore.Mysql -OutputDir AgendaDB -f
+﻿Scaffold-DbContext "server=172.31.254.167;port=3306;user=slab58;password=2005;database=agenda" Pomelo.EntityFrameWorkCore.Mysql -OutputDir AgendaDB -f

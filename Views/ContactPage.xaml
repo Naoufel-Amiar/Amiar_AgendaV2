@@ -92,6 +92,7 @@
                                     <!--Bouton Supprimer-->
                                     <Button Name="BTN_SupprContact"  Content="Supprimer" Click="BTN_SupprContact_Click" Tag="{Binding}"/>
                                     <!--Boutton detail-->
+                                    <Button Name="BTN_DetailContact" Content="Detail" Click="BTN_DetailContactFromContactView_Click" Tag="{Binding}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

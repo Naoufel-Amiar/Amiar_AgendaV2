@@ -52,36 +52,22 @@ namespace Amiar_Agenda.Service.DAO
             }
         }
 
-        //supprimer to do list
-        public string SupprToDoList(ToDoList todolist)
+        public void SupprToDoList(ToDoList todolist)
         {
-            using (Context = new AgendaContext())
+            using (var context = new AgendaContext())
             {
-                using (Context = new AgendaContext())
+                // Supprimer toutes les tâches associées à cette ToDoList
+                foreach (var task in context.Taches.Where(t => t.ToDoListId == todolist.Id).ToList())
                 {
-                    Context.ToDoLists.Remove(todolist);
-
-                    Context.SaveChanges();
+                    context.Taches.Remove(task);
                 }
-            }
-            return "Contacts retirer";
 
+                // Maintenant que les tâches associées ont été supprimées, supprimer la ToDoList elle-même
+                context.ToDoLists.Remove(todolist);
+
+                context.SaveChanges();
+            }
         }
 
-        ////avoir tasks de la to do list
-        //public List<ToDoList> GetTaskToDoList()
-        //{
-        //    using (Context = new AgendaContext())
-        //    {
-        //        var taskoftodolist = Context.ToDoLists.Include(cnt => cnt.Tasks).ToList();
-        //        return taskoftodolist;
-        //    }
-        //}
-
-        
-
     }
-
-
-
 }

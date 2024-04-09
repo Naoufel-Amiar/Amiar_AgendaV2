@@ -37,7 +37,7 @@ namespace Amiar_Agenda.Views
                 presettodolist = todolist;
 
                 TB_Titre.Text = todolist.Titre;
-                TB_Titre.Text = todolist.Description;
+                TB_Desc.Text = todolist.Description;
 
                 Pick_Start_Date.Text = todolist.Date.ToString();
                 Pick_End_Date.Text = todolist.EndDate.ToString();

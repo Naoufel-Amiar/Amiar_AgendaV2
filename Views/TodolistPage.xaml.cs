@@ -24,12 +24,15 @@ namespace Amiar_Agenda.Views
     public partial class TodolistPage : UserControl
     {
         public DAO_ToDoList DAOToDoList;
+        public DAO_task DAOTache;
+
 
         public TodolistPage()
         {
             InitializeComponent();
 
             DAOToDoList = new DAO_ToDoList();
+            DAOTache = new DAO_task();
 
             var allTODOLIST = DAOToDoList.GetAllToDoList();
 
@@ -61,20 +64,47 @@ namespace Amiar_Agenda.Views
             }
         }
 
+        //private void BTN_SupprTODOLIST_Click(object sender, RoutedEventArgs e)
+        //{
+        //    // Récupérer le bouton qui a été cliqué
+        //    Button button = sender as Button;
+        //    if (button != null)
+        //    {
+        //        // Récupérer le contact associé à la ligne du bouton
+        //        ToDoList todolist= button.DataContext as ToDoList;
+        //        if (todolist != null)
+        //        {
+
+        //            // Supprimer la to do list de la base de données
+        //            DAOTache.DeleteTask(tache);
+        //            DAOToDoList.SupprToDoList(todolist);
+
+        //            // Mettre à jour l'affichage dans le DataGrid en récupérant les contacts mis à jour
+        //            DG_Contact.ItemsSource = DAOToDoList.GetAllToDoList();
+        //        }
+        //    }
+        //}
+
         private void BTN_SupprTODOLIST_Click(object sender, RoutedEventArgs e)
         {
             // Récupérer le bouton qui a été cliqué
             Button button = sender as Button;
             if (button != null)
             {
-                // Récupérer le contact associé à la ligne du bouton
-                ToDoList todolist= button.DataContext as ToDoList;
+                // Récupérer la ToDoList associée à la ligne du bouton
+                ToDoList todolist = button.DataContext as ToDoList;
                 if (todolist != null)
                 {
-                    // Supprimer le contact de la base de données
+                    // Supprimer les tâches de la ToDoList de la base de données
+                    foreach (var task in todolist.Taches.ToList())
+                    {
+                        DAOTache.DeleteTask(task.Id);
+                    }
+
+                    // Supprimer la ToDoList de la base de données
                     DAOToDoList.SupprToDoList(todolist);
 
-                    // Mettre à jour l'affichage dans le DataGrid en récupérant les contacts mis à jour
+                    // Mettre à jour l'affichage dans le DataGrid en récupérant les ToDoList mises à jour
                     DG_Contact.ItemsSource = DAOToDoList.GetAllToDoList();
                 }
             }
@@ -89,6 +119,17 @@ namespace Amiar_Agenda.Views
             GRD_ToDoListContainer.Children.Clear();
             DetailToDoListPage detailtodolistpage = new DetailToDoListPage(todolist);
             GRD_ToDoListContainer.Children.Add(detailtodolistpage); 
+        }
+
+        private void BP_Add_Task_FromViewTask_Click(object sender, RoutedEventArgs e)
+        {
+            GRD_ToDoListContainer.Children.Clear();
+            AddTaskPage addtaskpage = new AddTaskPage();
+            GRD_ToDoListContainer.Children.Add(addtaskpage);
+
+            //GRD_Container_All.Children.Clear();
+            //TodolistPage todolistPage = new TodolistPage();
+            //GRD_Container_All.Children.Add(todolistPage);
         }
     }
 }

@@ -70,6 +70,7 @@ namespace Amiar_Agenda.Views
             GRD_ContactContainer.Children.Add(addContactPage);
         }
 
+
         private void BTN_ModifContact_Click(object sender, RoutedEventArgs e)
         {
             var btn = sender as Button;
@@ -86,5 +87,12 @@ namespace Amiar_Agenda.Views
             }
 
         }
+
+
+        private void BTN_DetailContactFromContactView_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        
     }
 }

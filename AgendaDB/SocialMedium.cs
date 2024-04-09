@@ -11,7 +11,7 @@ public partial class SocialMedium
 
     public string Url { get; set; } = null!;
 
-    public string Sudo { get; set; } = null!;
+    public string UserName { get; set; } = null!;
 
     public virtual ICollection<SocialProfil> SocialProfils { get; set; } = new List<SocialProfil>();
 }

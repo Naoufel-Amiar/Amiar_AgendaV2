@@ -63,12 +63,7 @@ namespace Amiar_Agenda.Views
         }
 
 
-        private void BP_Add_Task_FromViewTask_Click(object sender, RoutedEventArgs e)
-        {
-            GRD_Task_Container.Children.Clear();
-            AddTaskPage addtaskpage = new AddTaskPage();
-            GRD_Task_Container.Children.Add(addtaskpage);
-        }
+        
     }
 
     
