@@ -41,6 +41,17 @@ namespace Amiar_Agenda.Service.DAO
             }
         }
 
+        //modifier task
+        public string ModifyTask(Tache tache)
+        {
+            using (Context = new AgendaContext())
+            {
+                Context.Taches.Update(tache);
+                Context.SaveChanges();
+                return "La tache a été modifié";
+            }
+        }
+
 
         //Méthode pour créer une tâche pour une to do list
         public string CreateTaskAndAssignToList(Tache tache, int toDoListId)

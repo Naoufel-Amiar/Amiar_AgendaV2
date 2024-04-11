@@ -92,6 +92,13 @@ namespace Amiar_Agenda.Views
         private void BTN_DetailContactFromContactView_Click(object sender, RoutedEventArgs e)
         {
 
+            var btn = sender as Button;
+            var dc = btn.DataContext;
+            Contact contact = dc as Contact;
+
+            GRD_ContactContainer.Children.Clear();
+            DetailContactPage detailContactPage = new DetailContactPage(contact);
+            GRD_ContactContainer.Children.Add(detailContactPage);
         }
         
     }

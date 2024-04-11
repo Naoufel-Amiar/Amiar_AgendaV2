@@ -111,15 +111,7 @@ namespace Amiar_Agenda.Service.DAO
 
         }
 
-        //avoir reseau du contact
-        public List<Contact> GetContactsSocialProfil()
-        {
-            using (Context = new AgendaContext())
-            {
-                var contactSocialprofil = Context.Contacts.Include(cnt => cnt.SocialProfils).ToList();
-                return contactSocialprofil;
-            }
-        }
+        
 
     }
 }

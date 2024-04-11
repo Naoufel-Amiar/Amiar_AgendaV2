@@ -1,5 +1,6 @@
 ﻿using Amiar_Agenda.AgendaDB;
 using Amiar_Agenda.Service.DAO;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace Amiar_Agenda.Views
 
             InitializeComponent();
 
-            DAOToDoList = new DAO_ToDoList();
+            //DAOToDoList = new DAO_ToDoList();
 
             if (todolist != null)
             {

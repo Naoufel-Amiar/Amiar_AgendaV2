@@ -19,8 +19,6 @@ public partial class AgendaContext : DbContext
 
     public virtual DbSet<SocialMedium> SocialMedia { get; set; }
 
-    public virtual DbSet<SocialProfil> SocialProfils { get; set; }
-
     public virtual DbSet<Tache> Taches { get; set; }
 
     public virtual DbSet<ToDoList> ToDoLists { get; set; }
@@ -58,45 +56,24 @@ public partial class AgendaContext : DbContext
 
             entity.ToTable("social_media");
 
+            entity.HasIndex(e => e.ContactId, "fk_social_media_contact1_idx");
+
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
                 .HasColumnName("id");
+            entity.Property(e => e.ContactId)
+                .HasColumnType("int(11)")
+                .HasColumnName("contact_id");
             entity.Property(e => e.Name).HasMaxLength(45);
             entity.Property(e => e.Url)
                 .HasMaxLength(100)
                 .HasColumnName("URL");
             entity.Property(e => e.UserName).HasMaxLength(45);
-        });
 
-        modelBuilder.Entity<SocialProfil>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("social profil");
-
-            entity.HasIndex(e => e.SocialMediaId, "fk_Social Profil_Social Media1_idx");
-
-            entity.HasIndex(e => e.ContactId, "fk_Social Profil_contact_idx");
-
-            entity.Property(e => e.Id)
-                .HasColumnType("int(11)")
-                .HasColumnName("ID");
-            entity.Property(e => e.ContactId)
-                .HasColumnType("int(11)")
-                .HasColumnName("contact_id");
-            entity.Property(e => e.SocialMediaId)
-                .HasColumnType("int(11)")
-                .HasColumnName("Social Media_id");
-
-            entity.HasOne(d => d.Contact).WithMany(p => p.SocialProfils)
+            entity.HasOne(d => d.Contact).WithMany(p => p.SocialMedia)
                 .HasForeignKey(d => d.ContactId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_Social Profil_contact");
-
-            entity.HasOne(d => d.SocialMedia).WithMany(p => p.SocialProfils)
-                .HasForeignKey(d => d.SocialMediaId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_Social Profil_Social Media1");
+                .HasConstraintName("fk_social_media_contact1");
         });
 
         modelBuilder.Entity<Tache>(entity =>

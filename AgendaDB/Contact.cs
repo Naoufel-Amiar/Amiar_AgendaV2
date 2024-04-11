@@ -21,5 +21,5 @@ public partial class Contact
 
     public string Status { get; set; } = null!;
 
-    public virtual ICollection<SocialProfil> SocialProfils { get; set; } = new List<SocialProfil>();
+    public virtual ICollection<SocialMedium> SocialMedia { get; set; } = new List<SocialMedium>();
 }
