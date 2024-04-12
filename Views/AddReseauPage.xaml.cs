@@ -16,53 +16,51 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Amiar_Agenda.Views
 {
     /// <summary>
-    /// Logique d'interaction pour AddTaskPage.xaml
+    /// Logique d'interaction pour AddReseauPage.xaml
     /// </summary>
-    public partial class AddTaskPage : UserControl
+    public partial class AddReseauPage : UserControl
     {
-        public DAO_task DAOTask;
-        public DAO_ToDoList DAOToDoList;
-        public AddTaskPage()
+        public DAO_Reseau DAOreseau;
+        public DAO_contact DAOcontact;
+
+        public AddReseauPage()
         {
             InitializeComponent();
-            DAOTask = new DAO_task();
-            DAOToDoList = new DAO_ToDoList();
-
-            RemplirCBState();
-            RemplirCBNameList();
-
+            DAOcontact = new DAO_contact();
+            DAOreseau = new DAO_Reseau();
+            RemplirCBReseau();
+            RemplirCBNameContact(); 
         }
 
-        private void RemplirCBState()
+        private void RemplirCBReseau()
         {
-            string CheminListeState = "Ressource/Liste/ListeState.txt";
-            string[] ListState = File.ReadAllLines(CheminListeState);
+            string CheminListeReseau = "Ressource/Liste/ListReseau.txt";
+            string[] ListReseau = File.ReadAllLines(CheminListeReseau);
 
-            foreach (string State in ListState)
+            foreach (string Reseau in ListReseau)
             {
-                CB_State.Items.Add(State);
+                CB_ChoiceReseau.Items.Add(Reseau);
             }
         }
 
-        private void RemplirCBNameList()
+        private void RemplirCBNameContact()
         {
             try
             {
-                // Récupérer toutes les ToDoList depuis la base de données
-                IEnumerable<ToDoList> allToDoLists = DAOToDoList.GetAllToDoList();
+                // Récupérer tous les contacts depuis la base de données
+                IEnumerable<Contact> allContacts = DAOcontact.GetAllContacts();
 
                 // Vider le ComboBox avant de le remplir
-                CB_ChoiceList.Items.Clear();
+                CB_ChoiceContact.Items.Clear();
 
-                // Parcourir toutes les ToDoList et ajouter leur nom dans le ComboBox
-                foreach (ToDoList toDoList in allToDoLists)
+                // Parcourir tous les contacts et ajouter leur nom dans le ComboBox
+                foreach (Contact contact in allContacts)
                 {
-                    CB_ChoiceList.Items.Add(toDoList.Titre);
+                    CB_ChoiceContact.Items.Add(contact.Nom);
                 }
             }
             catch (Exception ex)
@@ -72,27 +70,30 @@ namespace Amiar_Agenda.Views
             }
         }
 
+
+
         private void BTN_ADD_TASK_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Tache tache = new Tache();
+                SocialMedium socialmedia = new SocialMedium();
 
-                tache.Name = TB_Titre.Text;
-                tache.Etat = CB_State.Text;
+                socialmedia.Url = TB_Link.Text;
+                socialmedia.UserName = TB_Username.Text;
+                socialmedia.Name = CB_ChoiceReseau.Text;
 
-                string selectedListName = CB_ChoiceList.Text;
+                string selectedContactName = CB_ChoiceContact.Text;
 
                 // Récupérer toutes les ToDoLists depuis la base de données
-                IEnumerable<ToDoList> allToDoLists = DAOToDoList.GetAllToDoList();
+                IEnumerable<Contact> allContacts = DAOcontact.GetAllContacts();
 
                 // Parcourir toutes les ToDoLists pour trouver celle correspondant au nom sélectionné
-                foreach (ToDoList list in allToDoLists)
+                foreach (Contact contact in allContacts)
                 {
-                    if (list.Titre == selectedListName)
+                    if (contact.Nom == selectedContactName)
                     {
                         // Créer la tâche et l'associer à la liste correspondante
-                        string result = DAOTask.CreateTaskAndAssignToList(tache, list.Id);
+                        string result = DAOreseau.CreateReseauAsignContact(socialmedia, contact.Id);
                         MessageBox.Show(result);
                         return;
                     }
@@ -106,7 +107,7 @@ namespace Amiar_Agenda.Views
                 // Gérer toute exception survenue lors de l'ajout de la tâche
                 MessageBox.Show("Erreur lors de l'ajout de la tâche : " + ex.Message);
             }
+            
         }
-
     }
 }

@@ -28,16 +28,14 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
-
         </Grid.Resources>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="1">
+
+        <Grid Grid.Row="0">
             <DataGrid Name="DG_Reseau" Style="{StaticResource CustomDataGridStyle}">
                 <DataGrid.Columns>
 
@@ -46,7 +44,9 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <!--Bouton Supprimer-->
-                                    <!--<Button Name="BTN_SupprRESEAUCONTACT"  Content="Supprimer" Click="BTN_SupprRESEAUCONTACT_Click" Tag="{Binding}"/>-->
+                                    <Button Name="BTN_SupprRESEAUCONTACT"  Content="Supprimer" Click="BTN_SupprRESEAUCONTACT_Click" Tag="{Binding}"/>
+                                    <!--Bouton Modifié-->
+                                    <Button Name="BTN_EditRESEAUCONTACT"  Content="Supprimer" Click="BTN_EditRESEAUCONTACT_Click" Tag="{Binding}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

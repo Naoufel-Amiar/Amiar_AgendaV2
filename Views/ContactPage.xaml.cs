@@ -100,6 +100,12 @@ namespace Amiar_Agenda.Views
             DetailContactPage detailContactPage = new DetailContactPage(contact);
             GRD_ContactContainer.Children.Add(detailContactPage);
         }
-        
+
+        private void BTN_AddReseauFromViewContact_Click(object sender, RoutedEventArgs e)
+        {
+            GRD_ContactContainer.Children.Clear();
+            AddReseauPage addreseaupage = new AddReseauPage();
+            GRD_ContactContainer.Children.Add(addreseaupage);
+        }
     }
 }

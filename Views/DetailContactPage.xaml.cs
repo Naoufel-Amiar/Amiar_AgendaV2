@@ -1,4 +1,5 @@
 ﻿using Amiar_Agenda.AgendaDB;
+using Amiar_Agenda.Service;
 using Amiar_Agenda.Service.DAO;
 
 using System;
@@ -42,15 +43,39 @@ namespace Amiar_Agenda.Views
                 presetcontact = contact;
             }
 
-            var AllReseauOfcontact = DAOreseau.GetReseaukByContact(presetcontact.Id);
+            var AllReseauOfcontact = DAOreseau.GetReseauByContact(presetcontact.Id);
             DG_Reseau.ItemsSource = AllReseauOfcontact;
 
         }
 
-        private void BTN_SupprTASKTODOLIST_Click(object sender, RoutedEventArgs e)
+        private void BTN_SupprRESEAUCONTACT_Click(object sender, RoutedEventArgs e)
+        {
+            
+            // Récupérer le bouton qui a été cliqué
+            Button button = sender as Button;
+            if (button != null)
+            {
+            // Récupérer le contact associé à la ligne du bouton
+            SocialMedium socialmedium  = button.DataContext as SocialMedium;
+                if (socialmedium != null)
+                {
+                    DAOreseau.DeleteReseau(socialmedium.Id);
+                    DG_Reseau.ItemsSource = DAOreseau.GetReseauByContact(socialmedium.Id);
+                }
+            }  
+        }
+
+        private void BTN_EditRESEAUCONTACT_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
+        public void ChargerReseaux()
+        {
+            var allReseaux = DAOreseau.GetReseauByContact(presetcontact.Id);
+            DG_Reseau.ItemsSource = allReseaux;
+        }
+
 
     }
 }

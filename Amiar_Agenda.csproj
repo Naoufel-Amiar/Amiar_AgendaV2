@@ -18,11 +18,15 @@
     <None Remove="Ressource\Icon\TO_DO_LIST.png" />
     <None Remove="Ressource\Liste\ListeState.txt" />
     <None Remove="Ressource\Liste\ListeStatus.txt" />
+    <None Remove="Ressource\Liste\ListReseau.txt" />
     <None Remove="Ressource\Liste\ListSex.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Ressource\Liste\ListeState.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressource\Liste\ListReseau.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Ressource\Liste\ListSex.txt">
